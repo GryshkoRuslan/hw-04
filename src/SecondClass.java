@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SecondClass {
@@ -11,15 +12,21 @@ public class SecondClass {
 
     public void setValues() {
         Scanner consoleInput = new Scanner(System.in);
-        System.out.println("Введите значение для переменной a:");
-        a = consoleInput.nextInt();
-        System.out.println("Введите значение для переменной b:");
-        b = consoleInput.nextInt();
-        System.out.println("Введите значение для переменной c:");
-        c = consoleInput.nextInt();
-        System.out.println("Введите значение для переменной d:");
-        d = consoleInput.nextInt();
-        consoleInput.close();
+        try {
+            System.out.println("Введите значение для переменной a:");
+            a = consoleInput.nextInt();
+            System.out.println("Введите значение для переменной b:");
+            b = consoleInput.nextInt();
+            System.out.println("Введите значение для переменной c:");
+            c = consoleInput.nextInt();
+            System.out.println("Введите значение для переменной d:");
+            d = consoleInput.nextInt();
+            consoleInput.close();
+        } catch (InputMismatchException e) {
+            System.out.println("Пожалуйста вводите значения с типом данных int");
+            consoleInput.nextLine();
+            setValues();
+        }
     }
 
     public void sum1(int firstValue, int secondValue) {
@@ -42,11 +49,11 @@ public class SecondClass {
         System.out.println("Уменьшили sum2 на 2 вышло: " + sum2);
     }
 
-  public void  isSum1MoreThanSum2() {
-        System.out.println("sum1 больше чем sum2 ?: " +  (sum1 > sum2));
-  }
+    public void isSum1MoreThanSum2() {
+        System.out.println("sum1 больше чем sum2 ?: " + (sum1 > sum2));
+    }
 
-  public void isAtLeastOneResultDevidesTo2() {
+    public void isAtLeastOneResultDevidesTo2() {
         System.out.println("sum1 или sum2 кратно 2 ?: " + ((sum1 % 2 == 0) || (sum2 % 2 == 0)));
-  }
+    }
 }
